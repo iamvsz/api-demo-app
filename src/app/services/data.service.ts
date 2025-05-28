@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +11,8 @@ export class DataService {
   constructor(private http: HttpClient) { }
 
   getData(): Observable<any[]> {
-    return this.http.get<any[]>('https://jsonplaceholder.typicode.com/posts?_limit=5');
+    return this.http.get<any[]>('https://jsonplaceholder.typicode.com/posts?').pipe(
+      map(data => data.slice(0, 5))// Limit to 5 items
+    )
   }
 }
