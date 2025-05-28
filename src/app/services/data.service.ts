@@ -15,4 +15,8 @@ export class DataService {
       map(data => data.slice(0, 5))// Limit to 5 items
     )
   }
+
+  postData(post: { title: string; body: string; userId: number }): Observable<any> {
+    return this.http.post(this.apiUrl, post);
+  }
 }
