@@ -11,7 +11,7 @@ export class DataService {
   constructor(private http: HttpClient) { }
 
   getData(): Observable<any[]> {
-    return this.http.get<any[]>('https://jsonplaceholder.typicode.com/posts?').pipe(
+    return this.http.get<any[]>('https://jsonplaceholder.typicode.com/posts').pipe(
       map(data => data.slice(0, 5))// Limit to 5 items
     )
   }
